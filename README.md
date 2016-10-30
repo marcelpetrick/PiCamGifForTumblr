@@ -1,3 +1,7 @@
 # PiCamGifForTumblr
 
-todo write later some crap about the what and how to use
+Smol script to create some 'webcam-tumblr'.
+Takes 25 photos of reduced size (500px in width), then tries to create a GIF with as much as possible frames while still obeying the size-limit of 2 mibyte.
+If the file would be bigger, the tumblr stops the animation and shows just a still, which is .. bad.
+
+See my blog http://marcelpetrick.bplaced.net/wp_solutionsnotcode/ on how to set up the other needed stuff on your Raspberry Pi :)
