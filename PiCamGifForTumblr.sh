@@ -5,15 +5,16 @@
 # about:        Shoot photos, create a GIF and upload to tumblr.
 #
 # license:	GNU General Public License v2.0
-# version:	0.2
-# date:		20161030
+# version:	0.3
+# date:		20180313
 #
 # history:
-#			0.2 logging-support; minor code-improvement
+#			0.3 fixed some mistakes in the script
+#			0.2 logging-support; minor code-improvement; now 30 frames possible at maximum - because the new upper filesize-limit is 3 MiByte
 #			0.1 added support to use as much frames a possible while keeping the GIF-size inside the tumblr-animation-limit (max 25 frames)
 #			0.0 initial version
 
-VERSION=0.1
+VERSION=0.3
 
 if [ "$#" -eq  "0" ]; then
 # +++++++++++++++++++
@@ -21,7 +22,7 @@ if [ "$#" -eq  "0" ]; then
 # +++++++++++++++++++
 	cd "${0%/*}" #go to the current directory of the script
 
-	FRAMES=25 # maximum amount of frames
+	FRAMES=30 # maximum amount of frames
 	OUTFILE="PiCam.log"
 	TEXT=`date`
 
@@ -39,7 +40,7 @@ if [ "$#" -eq  "0" ]; then
 	done
 
 	RESULTFILE="upload.gif"
-	MAXSIZE=2097152 # 2 * 1024 * 1024 byte
+	MAXSIZE=3100000 # less than three 3 * 1024 * 1024 byte
 	
 while true; do
 	#create the list of all input files
