@@ -5,16 +5,23 @@
 # about:        Shoot photos, create a GIF and upload to tumblr.
 #
 # license:	GNU General Public License v2.0
-# version:	0.3
-# date:		20180313
+# version:	0.4
+# date:		20180314
 #
 # history:
+#			0.4 photos will be rotated by 180 by mogrify while being converted - fix for some misaligned hardware
 #			0.3 fixed some mistakes in the script
 #			0.2 logging-support; minor code-improvement; now 30 frames possible at maximum - because the new upper filesize-limit is 3 MiByte
 #			0.1 added support to use as much frames a possible while keeping the GIF-size inside the tumblr-animation-limit (max 25 frames)
 #			0.0 initial version
+#
+# ideas for future improvements:
+#			* rotation with 0.4 made the timestamp stand on its head - fix this
+#			* add parallel processing by GNU parallel to use all four cores of the RPi3
+#			* make it use relative paths by setting some base-path; maybe the current location of the script
 
-VERSION=0.3
+
+VERSION=0.4
 
 if [ "$#" -eq  "0" ]; then
 # +++++++++++++++++++
