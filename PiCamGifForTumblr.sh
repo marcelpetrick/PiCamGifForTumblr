@@ -5,10 +5,11 @@
 # about:        Shoot photos, create a GIF and upload to tumblr.
 #
 # license:	GNU General Public License v2.0
-# version:	0.4
+# version:	0.4.1
 # date:		20180314
 #
 # history:
+#			0.4.1 rotate the photo instead of while converting the files
 #			0.4 photos will be rotated by 180 by mogrify while being converted - fix for some misaligned hardware
 #			0.3 fixed some mistakes in the script
 #			0.2 logging-support; minor code-improvement; now 30 frames possible at maximum - because the new upper filesize-limit is 3 MiByte
@@ -16,12 +17,11 @@
 #			0.0 initial version
 #
 # ideas for future improvements:
-#			* rotation with 0.4 made the timestamp stand on its head - fix this
 #			* add parallel processing by GNU parallel to use all four cores of the RPi3
 #			* make it use relative paths by setting some base-path; maybe the current location of the script
 
 
-VERSION=0.4
+VERSION=0.4.1
 
 if [ "$#" -eq  "0" ]; then
 # +++++++++++++++++++
@@ -34,9 +34,10 @@ if [ "$#" -eq  "0" ]; then
 	TEXT=`date`
 
 	# shoot some 500pix-wide photos and save them in a hardcoded directory (since it's run as cronjob)
+	# also roate them by 180° by vertical and horizontal flipping
 	echo "shoot now $FRAMES photos"
 	for (( i = 0; i < $FRAMES; i++ )); do
-		raspistill -h 375 -w 500 -a 1036 -o tempgifs/cam${i}.jpg
+		raspistill -h 375 -w 500 -a 1036 -hf -vf -o tempgifs/cam${i}.jpg
 	done
 
 	# convert the photos: necessary, because if saved immediately as GIF, then posterization appears (trust me ..)
@@ -100,3 +101,4 @@ else
 		exit 1
 	fi
 fi
+
