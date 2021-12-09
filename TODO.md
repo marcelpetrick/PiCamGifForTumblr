@@ -7,3 +7,4 @@
   * `sudo apt-get install imagemagick`
 * fail `./PiCamGifForTumblr.sh: line 63: gifsicle: command not found`
   * `sudo apt-get install gifsicle`
+* fail: pytumble.py?!? file exists maybe on the old catcam, but is missing in repo; also document how to configure the API-key :/
