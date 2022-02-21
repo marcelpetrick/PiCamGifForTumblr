@@ -5,8 +5,8 @@
 # about:        Shoot photos, create a GIF and upload to tumblr.
 #
 # license:	GNU General Public License v2.0
-# version:	0.4.1
-# date:		20180314
+# version:	0.4.2
+# date:		20220221
 #
 # history:
 #			0.4.1 rotate the photo instead of while converting the files
@@ -21,7 +21,7 @@
 #			* make it use relative paths by setting some base-path; maybe the current location of the script
 
 
-VERSION=0.4.1
+VERSION=0.4.2
 
 if [ "$#" -eq  "0" ]; then
 # +++++++++++++++++++
@@ -51,19 +51,19 @@ if [ "$#" -eq  "0" ]; then
 	MAXSIZE=3100000 # less than three 3 * 1024 * 1024 byte
 	
 while true; do
-	#create the list of all input files
+	# create the list of all input files
 	INPUTLIST=""
 	for (( i = 0; i < $FRAMES; i++ )); do
 		INPUTLIST="$INPUTLIST tempgifs/cam$i.gif"
 	done
-	#echo "result list: $INPUTLIST"
+	# echo "result list: $INPUTLIST"
 
 	# convert the single frames to an animated GIF
 	echo "gif now using $FRAMES frames"
 	gifsicle --delay=10 -O3 --loop $INPUTLIST > "$RESULTFILE"
 	#echo "$RESULTFILE"
 
-	#check the size of the GIF
+	# check the size of the GIF
 	if (( `stat -c%s "$RESULTFILE"` < $MAXSIZE )); then
 		echo "success: smaller than two mibyte with $FRAMES frames"
 		TEXT="$TEXT success $FRAMES frames"
@@ -78,7 +78,7 @@ while true; do
 	fi
 done #end of the loop: is exited via break
 
-	#logging
+	# logging
 	echo "$TEXT" >> "$OUTFILE"
 
 	# upload via the pre-configured pytumble-python-script
@@ -101,4 +101,3 @@ else
 		exit 1
 	fi
 fi
-
