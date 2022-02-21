@@ -9,6 +9,7 @@
 # date:		20220221
 #
 # history:
+#			0.4.2 fixed the rotation and capturing parameters; fixed some comments
 #			0.4.1 rotate the photo instead of while converting the files
 #			0.4 photos will be rotated by 180 by mogrify while being converted - fix for some misaligned hardware
 #			0.3 fixed some mistakes in the script
@@ -37,7 +38,7 @@ if [ "$#" -eq  "0" ]; then
 	# also roate them by 180° by vertical and horizontal flipping
 	echo "shoot now $FRAMES photos"
 	for (( i = 0; i < $FRAMES; i++ )); do
-		raspistill -h 375 -w 500 -a 1036 -hf -vf -o tempgifs/cam${i}.jpg
+		raspistill -h 375 -w 500 -a 1036 -q 100 -rot 90 -o tempgifs/cam${i}.jpg
 	done
 
 	# convert the photos: necessary, because if saved immediately as GIF, then posterization appears (trust me ..)
