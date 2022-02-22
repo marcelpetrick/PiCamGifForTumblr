@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-# author:	Marcel Petrick (mail@marcelpetrick.it)
+# author:	mail@marcelpetrick.it
 #
-# about:        Shoot photos, create a GIF and upload to tumblr.
+# about::	Take photos, create a GIF and upload to tumblr.
 #
 # license:	GNU General Public License v2.0
-# version:	0.4.2
+# version:	0.4.3
 # date:		20220221
 #
 # history:
@@ -22,7 +22,7 @@
 #			* make it use relative paths by setting some base-path; maybe the current location of the script
 
 
-VERSION=0.4.2
+VERSION=0.4.3
 
 if [ "$#" -eq  "0" ]; then
 # +++++++++++++++++++
@@ -41,7 +41,7 @@ if [ "$#" -eq  "0" ]; then
 		raspistill -h 375 -w 500 -a 1036 -q 100 -rot 90 -o tempgifs/cam${i}.jpg
 	done
 
-	# convert the photos: necessary, because if saved immediately as GIF, then posterization appears (trust me ..)
+	# convert the photos: necessary, because if saved immediately as GIF, then posterization appears
 	echo "convert now $FRAMES JPG to GIF"
 	for (( i = 0; i < $FRAMES; i++ )); do
 		mogrify -format gif tempgifs/cam${i}.jpg
@@ -70,9 +70,9 @@ while true; do
 		TEXT="$TEXT success $FRAMES frames"
 		break
 	else
-		echo "fail: bigger than two mibyte! -> next run with less frames (now $FRAMES)"
+		echo "fail: bigger than three MiByte! -> next run with less frames (now $FRAMES)"
 		FRAMES=$((FRAMES-1)) # decrease by one .. ugly in bash
-		if (( "$FRAMES" <  0 )); then
+		if (( "$FRAMES" < 0 )); then
 			echo "break because smaller zero"
 			TEXT="$TEXT fail"
 		fi
