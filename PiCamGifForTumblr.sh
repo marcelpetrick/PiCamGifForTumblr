@@ -2,11 +2,11 @@
 
 # author:	mail@marcelpetrick.it
 #
-# about::	Take photos, create a GIF and upload to tumblr.
+# about:	Take photos, create a GIF and upload to tumblr.
 #
 # license:	GNU General Public License v2.0
-# version:	0.4.3
-# date:		20220221
+# version:	0.4.4
+# date:		20220524
 #
 # history:
 #			0.4.2 fixed the rotation and capturing parameters; fixed some comments
@@ -22,7 +22,7 @@
 #			* make it use relative paths by setting some base-path; maybe the current location of the script
 
 
-VERSION=0.4.3
+VERSION=0.4.4
 
 if [ "$#" -eq  "0" ]; then
 # +++++++++++++++++++
